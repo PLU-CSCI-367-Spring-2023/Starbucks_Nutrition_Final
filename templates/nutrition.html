@@ -1,0 +1,43 @@
+<html>
+
+<head>
+    <title>Starbucks- Search Nutrition Facts</title>
+    <style>
+        form>label {
+            display: block;
+            margin: 5px 0;
+        }
+
+        form>label>span {
+            width: 90px;
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="nutrition" method="get">
+        <label>
+            <span>Item name:</span>
+            <input type="text" name= item value="{{params['item']}}">
+        </label>
+        <label>
+            <span>Type :</span>
+            <input type="text" name= food value="{{params['type']}}">
+        </label>
+
+        <button type="submit">search</button>
+    </form>
+
+    {% if result_count > 0 %}
+    <h1>{{result_count}} results</h1>
+    <ol>
+        {% for set in nutrition %}
+        <li>{{nutrition.item}}</li>
+        {% endfor %}
+    </ol>
+    {% else %}
+    <h1>No results :(</h1>
+    {% endif %}
+
+</body>
