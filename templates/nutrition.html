@@ -18,12 +18,12 @@
 <body>
     <form action="nutrition" method="get">
         <label>
-            <span>Item name:</span>
+            <span>Item :</span>
             <input type="text" name= item value="{{params['item']}}">
         </label>
         <label>
             <span>Type :</span>
-            <input type="text" name= food value="{{params['type']}}">
+            <input type="text" name= nutr_food value="{{params['nutr_type']}}">
         </label>
 
         <button type="submit">search</button>
@@ -32,7 +32,7 @@
     {% if result_count > 0 %}
     <h1>{{result_count}} results</h1>
     <ol>
-        {% for set in nutrition %}
+        {% for item in nutrition %}
         <li>{{nutrition.item}}</li>
         {% endfor %}
     </ol>

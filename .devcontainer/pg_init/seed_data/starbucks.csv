@@ -1,4 +1,4 @@
-"id","item","calories","fat","carb","fiber","protein","type"
+"nutr_id","item","calories","fat","carb","fiber","protein","nutr_type"
 "1","8-Grain Roll",350,8,67,5,10,"bakery"
 "2","Apple Bran Muffin",350,9,64,7,6,"bakery"
 "3","Apple Fritter",420,20,59,0,5,"bakery"
