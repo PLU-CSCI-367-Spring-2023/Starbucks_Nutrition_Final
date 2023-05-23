@@ -29,15 +29,39 @@
         <button type="submit">search</button>
     </form>
 
-    {% if result_count > 0 %}
-    <h1>{{result_count}} results</h1>
-    <ol>
-        {% for item in nutrition %}
-        <li>{{nutrition.item}}</li>
-        {% endfor %}
-    </ol>
-    {% else %}
-    <h1>No results :(</h1>
-    {% endif %}
+    <script src="starbucks.csv"></script>
+    <script>
+        $(document).ready(function(){
+            $.get("starbucks.csv", function(data) {
+                var rows = data.split("\n");
+                var table = $("<table></table>");
+                
+                for (var i = 0; i < rows.length; i++) {
+                    var cells = rows[i].split(",");
+                    if (i === 0) {
+                        var tableHead = $("<thead></thead>");
+                        var tableHeadRow = $("<tr></tr>");
+                        
+                        for (var j = 0; j < cells.length; j++) {
+                            tableHeadRow.append($("<th></th>").text(cells[j]));
+                        }
+                        
+                        tableHead.append(tableHeadRow);
+                        table.append(tableHead);
+                    } else {
+                        var tableRow = $("<tr></tr>");
+                        
+                        for (var k = 0; k < cells.length; k++) {
+                            tableRow.append($("<td></td>").text(cells[k]));
+                        }
+                        
+                        table.append(tableRow);
+                    }
+                }
+                
+                $("body").append(table);
+            });
+        });
+    </script>
 
 </body>

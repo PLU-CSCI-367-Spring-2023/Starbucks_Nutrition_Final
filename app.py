@@ -24,7 +24,7 @@ def render_nutrition():
     nutr_type = request.args.get("type", "")
 
     from_where_clause = """
-    select nutr_id, item, calories, fat, carb, fiber, protein, nutr_type
+    select *
     from nutrition 
     """
 
@@ -41,15 +41,11 @@ def render_nutrition():
     }
 
     with conn.cursor() as cur:
-        cur.execute(f"select n.nutr_id as id, n.item as item {from_where_clause} limit 10",
+        cur.execute(f"{from_where_clause} limit 10",
                     params)
         results = list(cur.fetchall())
 
-        cur.execute(f"select count(*) as count {from_where_clause}",
-                    params)
-        count = cur.fetchone()["count"]
 
         return render_template("nutrition.html",
                                params=request.args,
-                               result_count=count,
                                nutrition=results)
