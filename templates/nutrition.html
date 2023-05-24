@@ -3,6 +3,8 @@
 <head>
     <title>Starbucks- Search Nutrition Facts</title>
     <h1>Starbucks- Search Nutrition Facts</h1>
+    <img src="https://upload.wikimedia.org/wikipedia/en/3/35/Starbucks_Coffee_Logo.svg">
+    <link rel="stylesheet" href="nutrition.css">
     <style>
         form>label {
             display: block;
@@ -20,12 +22,12 @@ width: 92%;
 margin-left: 3.0%;
         }
         td {
-background-color: blueviolet;
+background-color: whitesmoke;
                     padding: 10px;
                     border: 1px solid #000000;
         }
 table tbody tr {
-    background-color: greenyellow;
+    background-color: green;
 }
 table tbody tr:nth-child(odd) {
     background-color: grey;
@@ -82,19 +84,92 @@ form>label>span {
     <form>
         {% if not summary%}
         <table>
+            <div class="th">
             <tr>
-                <th>nutr_id</th>
-                <th>item</th>
-                <th>calories</th>
-                <th>fat</th>
-                <th>carb</th>
-                <th>fiber</th>
-                <th>protein</th>
-                <th>nutr_type</th>
+                <th>
+                    <a href="/home?nutr_id={{params['nutr_id']}}&item={{params['item']}}&calories={{params['calories']}}&fat={{params['fat']}}&carb={{params['carb']}}&fiber={{params['fiber']}}&protein={{params['protein']}}&nutr_type={{params['nutr_type']}}&sort_by=nutr_type&sort_dir={{get_sort_dir('nutr_type')}}">nutr_id</a>
+                    {% if params['sort_by'] == 'nutr_id' %}
+                    {% if params['sort_dir'] == 'asc' %}
+                    <span>&#8593;</span>
+                    {% else %}
+                    <span>&#8595;</span>
+                    {% endif %}
+                    {% endif %}
+                </th>
+                <th>
+                    <a href="/home?nutr_id={{params['nutr_id']}}&item={{params['item']}}&calories={{params['calories']}}&fat={{params['fat']}}&carb={{params['carb']}}&fiber={{params['fiber']}}&protein={{params['protein']}}&nutr_type={{params['nutr_type']}}&sort_by=nutr_type&sort_dir={{get_sort_dir('nutr_type')}}">item</a>
+                    {% if params['sort_by'] == 'item' %}
+                    {% if params['sort_dir'] == 'asc' %}
+                    <span>&#8593;</span>
+                    {% else %}
+                    <span>&#8595;</span>
+                    {% endif %}
+                    {% endif %}
+                </th>
+                <th>
+                    <a href="/home?nutr_id={{params['nutr_id']}}&item={{params['item']}}&calories={{params['calories']}}&fat={{params['fat']}}&carb={{params['carb']}}&fiber={{params['fiber']}}&protein={{params['protein']}}&nutr_type={{params['nutr_type']}}&sort_by=nutr_type&sort_dir={{get_sort_dir('nutr_type')}}">calories</a>
+                    {% if params['sort_by'] == 'calories' %}
+                    {% if params['sort_dir'] == 'asc' %}
+                    <span>&#8593;</span>
+                    {% else %}
+                    <span>&#8595;</span>
+                    {% endif %}
+                    {% endif %}
+                </th>
+                <th>
+                    <a href="/home?nutr_id={{params['nutr_id']}}&item={{params['item']}}&calories={{params['calories']}}&fat={{params['fat']}}&carb={{params['carb']}}&fiber={{params['fiber']}}&protein={{params['protein']}}&nutr_type={{params['nutr_type']}}&sort_by=nutr_type&sort_dir={{get_sort_dir('nutr_type')}}">fat</a>
+                    {% if params['sort_by'] == 'fat' %}
+                    {% if params['sort_dir'] == 'asc' %}
+                    <span>&#8593;</span>
+                    {% else %}
+                    <span>&#8595;</span>
+                    {% endif %}
+                    {% endif %}
+                </th>
+                <th>
+                    <a href="/home?nutr_id={{params['nutr_id']}}&item={{params['item']}}&calories={{params['calories']}}&fat={{params['fat']}}&carb={{params['carb']}}&fiber={{params['fiber']}}&protein={{params['protein']}}&nutr_type={{params['nutr_type']}}&sort_by=nutr_type&sort_dir={{get_sort_dir('nutr_type')}}">carb</a>
+                    {% if params['sort_by'] == 'carb' %}
+                    {% if params['sort_dir'] == 'asc' %}
+                    <span>&#8593;</span>
+                    {% else %}
+                    <span>&#8595;</span>
+                    {% endif %}
+                    {% endif %}
+                </th>
+                <th>
+                    <a href="/home?nutr_id={{params['nutr_id']}}&item={{params['item']}}&calories={{params['calories']}}&fat={{params['fat']}}&carb={{params['carb']}}&fiber={{params['fiber']}}&protein={{params['protein']}}&nutr_type={{params['nutr_type']}}&sort_by=nutr_type&sort_dir={{get_sort_dir('nutr_type')}}">fiber</a>
+                    {% if params['sort_by'] == 'fiber' %}
+                    {% if params['sort_dir'] == 'asc' %}
+                    <span>&#8593;</span>
+                    {% else %}
+                    <span>&#8595;</span>
+                    {% endif %}
+                    {% endif %}
+                </th>
+                <th>
+                    <a href="/home?nutr_id={{params['nutr_id']}}&item={{params['item']}}&calories={{params['calories']}}&fat={{params['fat']}}&carb={{params['carb']}}&fiber={{params['fiber']}}&protein={{params['protein']}}&nutr_type={{params['nutr_type']}}&sort_by=nutr_type&sort_dir={{get_sort_dir('nutr_type')}}">protein</a>
+                    {% if params['sort_by'] == 'protein' %}
+                    {% if params['sort_dir'] == 'asc' %}
+                    <span>&#8593;</span>
+                    {% else %}
+                    <span>&#8595;</span>
+                    {% endif %}
+                    {% endif %}
+                </th><th>
+                    <a href="/home?nutr_id={{params['nutr_id']}}&item={{params['item']}}&calories={{params['calories']}}&fat={{params['fat']}}&carb={{params['carb']}}&fiber={{params['fiber']}}&protein={{params['protein']}}&nutr_type={{params['nutr_type']}}&sort_by=nutr_type&sort_dir={{get_sort_dir('nutr_type')}}">nutr_type</a>
+                    {% if params['sort_by'] == 'nutr_type' %}
+                    {% if params['sort_dir'] == 'asc' %}
+                    <span>&#8593;</span>
+                    {% else %}
+                    <span>&#8595;</span>
+                    {% endif %}
+                    {% endif %}
+                </th>
             </tr>
             {% end if %}
         </table>
         {% end if %}
+    </div>
     </form>
 
 </body>

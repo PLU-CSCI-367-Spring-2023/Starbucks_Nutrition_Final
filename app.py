@@ -47,7 +47,7 @@ def render_nutrition():
         "carb": int(carb) if carb else None,
         "fiber": int(fiber) if fiber else None,
         "protein": int(protein) if protein else None,
-        "nutr_type": f"%{nutr_type}",
+        "nutr_type": f"%{nutr_type}%",
         "sort_by" : sort_by,
         "sort_dir" : sort_dir,
         "page" : page,
@@ -56,11 +56,16 @@ def render_nutrition():
     }
 
     with conn.cursor() as cur:
-        cur.execute(f"{from_where_clause} limit 10",
+        cur.execute(f"""select nutr_id. item, calories, fat, carb, fiber, protein, nutr_type
+                        {from_where_clause}
+                        order by {sort_by} {sort_dir}
+                        limit %(limit)s
+                    """,
                     params)
         results = list(cur.fetchall())
 
 
         return render_template("nutrition.html",
+                               nutrition=results,
                                params=request.args,
-                               nutrition=results)
+                                )
