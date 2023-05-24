@@ -2,6 +2,7 @@
 
 <head>
     <title>Starbucks- Search Nutrition Facts</title>
+    <h1>Starbucks- Search Nutrition Facts</h1>
     <style>
         form>label {
             display: block;
@@ -12,6 +13,31 @@
             width: 90px;
             display: inline-block;
         }
+
+        table {
+border-collapse: collapse;
+width: 92%;
+margin-left: 3.0%;
+        }
+        td {
+background-color: blueviolet;
+                    padding: 10px;
+                    border: 1px solid #000000;
+        }
+table tbody tr {
+    background-color: greenyellow;
+}
+table tbody tr:nth-child(odd) {
+    background-color: grey;
+}
+form>label {
+    display: block;
+    margin: 5px 0;
+} 
+form>label>span {
+    width: 90px;
+    display: inLine-block;
+}
     </style>
 </head>
 
@@ -26,42 +52,50 @@
             <input type="text" name= nutr_food value="{{params['nutr_type']}}">
         </label>
 
-        <button type="submit">search</button>
+        <table id="table"></table>
     </form>
 
-    <script src="starbucks.csv"></script>
-    <script>
-        $(document).ready(function(){
-            $.get("starbucks.csv", function(data) {
-                var rows = data.split("\n");
-                var table = $("<table></table>");
-                
-                for (var i = 0; i < rows.length; i++) {
-                    var cells = rows[i].split(",");
-                    if (i === 0) {
-                        var tableHead = $("<thead></thead>");
-                        var tableHeadRow = $("<tr></tr>");
-                        
-                        for (var j = 0; j < cells.length; j++) {
-                            tableHeadRow.append($("<th></th>").text(cells[j]));
-                        }
-                        
-                        tableHead.append(tableHeadRow);
-                        table.append(tableHead);
-                    } else {
-                        var tableRow = $("<tr></tr>");
-                        
-                        for (var k = 0; k < cells.length; k++) {
-                            tableRow.append($("<td></td>").text(cells[k]));
-                        }
-                        
-                        table.append(tableRow);
-                    }
-                }
-                
-                $("body").append(table);
-            });
-        });
-    </script>
+    <div style="text-align: center;">
+    <form action="home" meathod="get">
+        <span>nutr_id:</span>
+            <input type="text" name=nutr_id value="{{parmas['nutr_id']}}">
+        <span>item:</span>
+            <input type="text" name=item value="{{parmas['item']}}">
+         <span>calories:</span>
+            <input type="text" name=calories value="{{parmas['calories']}}">
+        <span>fat:</span>
+            <input type="text" name=fat value="{{parmas['fat']}}">
+        <span>carb:</span>
+            <input type="text" name=carb value="{{parmas['carb']}}">
+        <span>fiber:</span>
+            <input type="text" name=fiber value="{{parmas['fiber']}}">
+         <span>protein:</span>
+            <input type="text" name=protein value="{{parmas['protein']}}">
+        <span>nutr_type:</span>
+            <input type="text" name=nutr_type value="{{parmas['nutr_type']}}">
+    </form>
+    </div>
+
+    {% if result_count > 0 %}
+    <div style="text-align: center;"><h1>{{result_count}} results</h1></div>
+
+    <form>
+        {% if not summary%}
+        <table>
+            <tr>
+                <th>nutr_id</th>
+                <th>item</th>
+                <th>calories</th>
+                <th>fat</th>
+                <th>carb</th>
+                <th>fiber</th>
+                <th>protein</th>
+                <th>nutr_type</th>
+            </tr>
+            {% end if %}
+        </table>
+        {% end if %}
+    </form>
 
 </body>
+</html>
