@@ -27,20 +27,20 @@ def render_nutrition():
     page = request.args.get("page", 1, type=int)
     limit = request.args.get("limit", 100, type=int)
 
-    from_where_clause = f"""
+    from_where_clause = """
     from nutrition 
     where %(nutr_id)s is null or nutr_id = %(nutr_id)s
-    and ( %item)s is null or item ilike %(item)s )
-    and ( %calories)s is null or calories = %(calories)s )
-    and ( %fat)s is null or fat = %(fat)s )
-    and ( %carb)s is null or carb = %(carb)s )
-    and ( %fiber)s is null or fiber = %(fiber)s )
-    and ( %protein)s is null or protein = %(protein)s )
-    and ( %nutr_type)s is null or nutr_type ilike %(nutr_type)s )
+    and ( %(item)s is null or item ilike %(item)s )
+    and ( %(calories)s is null or calories = %(calories)s )
+    and ( %(fat)s is null or fat = %(fat)s )
+    and ( %(carb)s is null or carb = %(carb)s )
+    and ( %(fiber)s is null or fiber = %(fiber)s )
+    and ( %(protein)s is null or protein = %(protein)s )
+    and ( %(nutr_type)s is null or nutr_type ilike %(nutr_type)s )
     """
 
     params = {
-        "nutr_id": f"%{nutr_id}%",
+        "nutr_id": int(nutr_id) if nutr_id else None,
         "item": f"%{item}%",
         "calories": int(calories) if calories else None,
         "fat": float(fat) if fat else None,
@@ -56,7 +56,7 @@ def render_nutrition():
     }
 
     with conn.cursor() as cur:
-        cur.execute(f"""select nutr_id. item, calories, fat, carb, fiber, protein, nutr_type
+        cur.execute(f"""select nutr_id, item, calories, fat, carb, fiber, protein, nutr_type
                         {from_where_clause}
                         order by {sort_by} {sort_dir}
                         limit %(limit)s
