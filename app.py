@@ -23,7 +23,7 @@ def render_nutrition():
     protein = request.args.get("protein", "")
     nutr_type = request.args.get("nutr_type", "")
     sort_dir = request.args.get("sort_dir", "asc")
-    sort_by = request.args.get("sort_by", "name")
+    sort_by = request.args.get("sort_by", "item")
     page = request.args.get("page", 1, type=int)
     limit = request.args.get("limit", 100, type=int)
 
@@ -55,6 +55,12 @@ def render_nutrition():
 
     }
 
+    def get_sort_dir(col):
+        if col== sort_by:
+            return "desc" if sort_dir == "asc" else "asc"
+        else:
+                return "asc"
+
     with conn.cursor() as cur:
         cur.execute(f"""select nutr_id, item, calories, fat, carb, fiber, protein, nutr_type
                         {from_where_clause}
@@ -64,8 +70,13 @@ def render_nutrition():
                     params)
         results = list(cur.fetchall())
 
+        cur.execute(f"select count(*) as count {from_where_clause}", params)
+        count = cur.fetchone()["count"]
 
-        return render_template("nutrition.html",
+
+    return render_template("nutrition.html",
                                nutrition=results,
                                params=request.args,
+                               result_count = count,
+                               get_sort_dir = get_sort_dir
                                 )

@@ -46,37 +46,62 @@ form>label>span {
 <body>
     <form action="nutrition" method="get">
         <label>
+            <span>Nutrition ID:</span>
+            <input type="text" name= nutr_id value="{{params['nutr_id']}}">
+        </label>
+        <label>
             <span>Item :</span>
             <input type="text" name= item value="{{params['item']}}">
         </label>
         <label>
-            <span>Type :</span>
-            <input type="text" name= nutr_food value="{{params['nutr_type']}}">
+            <span>Calories :</span>
+            <input type="text" name= calories value="{{params['calories']}}">
         </label>
-
+        <label>
+            <span>Fat :</span>
+            <input type="text" name= fat value="{{params['fat']}}">
+        </label>
+        <label>
+            <span>Carbs :</span>
+            <input type="text" name= carb value="{{params['carb']}}">
+        </label>
+        <label>
+            <span>Fiber :</span>
+            <input type="text" name= fiber value="{{params['fiber']}}">
+        </label>
+        <label>
+            <span>Protein :</span>
+            <input type="text" name= protein value="{{params['protein']}}">
+        </label>
+        <label>
+            <span>Nutrition Type :</span>
+            <input type="text" name= nutr_type value="{{params['nutr_type']}}">
+        </label>
+        <button type="submit">Search</button> 
+           
         <table id="table"></table>
     </form>
 
-    <div style="text-align: center;">
+    <!-- <div style="text-align: center;">
     <form action="home" meathod="get">
         <span>nutr_id:</span>
-            <input type="text" name=nutr_id value="{{parmas['nutr_id']}}">
+            <input type="text" name=nutr_id value="{{params['nutr_id']}}">
         <span>item:</span>
-            <input type="text" name=item value="{{parmas['item']}}">
+            <input type="text" name=item value="{{params['item']}}">
          <span>calories:</span>
-            <input type="text" name=calories value="{{parmas['calories']}}">
+            <input type="text" name=calories value="{{params['calories']}}">
         <span>fat:</span>
-            <input type="text" name=fat value="{{parmas['fat']}}">
+            <input type="text" name=fat value="{{params['fat']}}">
         <span>carb:</span>
-            <input type="text" name=carb value="{{parmas['carb']}}">
+            <input type="text" name=carb value="{{params['carb']}}">
         <span>fiber:</span>
-            <input type="text" name=fiber value="{{parmas['fiber']}}">
+            <input type="text" name=fiber value="{{params['fiber']}}">
          <span>protein:</span>
-            <input type="text" name=protein value="{{parmas['protein']}}">
+            <input type="text" name=protein value="{{params['protein']}}">
         <span>nutr_type:</span>
-            <input type="text" name=nutr_type value="{{parmas['nutr_type']}}">
+            <input type="text" name=nutr_type value="{{params['nutr_type']}}">
     </form>
-    </div>
+    </div> -->
 
     {% if result_count > 0 %}
     <div style="text-align: center;"><h1>{{result_count}} results</h1></div>
@@ -166,9 +191,9 @@ form>label>span {
                     {% endif %}
                 </th>
             </tr>
-            {% end if %}
+            {% endif %}
         </table>
-        {% end if %}
+        {% endif %}
     </div>
     </form>
 
