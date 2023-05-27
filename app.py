@@ -30,13 +30,13 @@ def render_nutrition():
     from_where_clause = """
     from nutrition 
     where %(nutr_id)s is null or nutr_id = %(nutr_id)s
-    and ( %(item)s is null or item ilike %(item)s )
-    and ( %(calories)s is null or calories = %(calories)s )
-    and ( %(fat)s is null or fat = %(fat)s )
-    and ( %(carb)s is null or carb = %(carb)s )
-    and ( %(fiber)s is null or fiber = %(fiber)s )
-    and ( %(protein)s is null or protein = %(protein)s )
-    and ( %(nutr_type)s is null or nutr_type ilike %(nutr_type)s )
+    and   %(item)s is null or item ilike %(item)s
+    and   %(calories)s is null or calories = %(calories)s 
+    and   %(fat)s is null or fat = %(fat)s 
+    and   %(carb)s is null or carb = %(carb)s 
+    and   %(fiber)s is null or fiber = %(fiber)s 
+    and   %(protein)s is null or protein = %(protein)s 
+    and   %(nutr_type)s is null or nutr_type ilike %(nutr_type)s 
     """
 
     params = {
