@@ -9,8 +9,8 @@ app = Flask(__name__)
 
 
 @app.route('/')
-def hello_world():
-    return "Hello, World!"
+def welcome():
+    return render_template("welcome.html")
 
 @app.route('/nutrition')
 def render_nutrition():
