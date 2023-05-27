@@ -3,45 +3,71 @@
 <head>
     <title>Starbucks- Search Nutrition Facts</title>
     <h1>Starbucks- Search Nutrition Facts</h1>
-    <img src="https://upload.wikimedia.org/wikipedia/en/3/35/Starbucks_Coffee_Logo.svg">
-    <!-- <link rel="stylesheet" href="nutrition.css"> -->
-    <style>
-        form>label {
-            display: block;
-            margin: 5px 0;
-        }
+    <img src="https://upload.wikimedia.org/wikipedia/en/3/35/Starbucks_Coffee_Logo.svg" class="image">
+</head>
 
-        form>label>span {
-            width: 90px;
-            display: inline-block;
-        }
+<style>
 
-        table {
-border-collapse: collapse;
-width: 92%;
-margin-left: 3.0%;
-        }
-        td {
-background-color: whitesmoke;
-                    padding: 10px;
-                    border: 1px solid #000000;
-        }
-table tbody tr {
-    background-color: green;
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-table tbody tr:nth-child(odd) {
-    background-color: grey;
-}
-form>label {
+
+h1 {
+    color: white;
     display: block;
     margin: 5px 0;
-} 
-form>label>span {
+    text-align: center;
+    font-size: 40px;
+}
+
+table {
+    background-color: grey;
+    border-collapse: collapse;
+    width: 92%;
+    margin-left: 3.0%;
+}
+
+tr {
+    background-color: rgba(255, 255, 255, 0.727);
+    padding: 10px;
+
+}
+
+td {
+    border: 1px solid #000000;
+    padding: 10px;
+}
+
+table tr:nth-child(odd) {
+    background-color: hwb(134 16% 30% / 0.617);
+}
+
+form > label {
+    display: block;
+    margin: 5px 0;
+}
+
+form > label > span {
     width: 90px;
     display: inLine-block;
 }
-    </style>
-</head>
+body{
+    background: radial-gradient( hwb(0 85% 15%), hwb(0 0% 100%));
+      background-attachment: fixed;
+}
+
+img.image {
+  display: block;
+  margin: 20px auto;
+}
+
+</style>
 
 <body>
     <form action="nutrition" method="get">
@@ -53,55 +79,20 @@ form>label>span {
             <span>Item :</span>
             <input type="text" name= item value="{{params['item']}}">
         </label>
-        <!-- <label>
-            <span>Calories :</span>
-            <input type="text" name= calories value="{{params['calories']}}">
-        </label>
-        <label>
-            <span>Fat :</span>
-            <input type="text" name= fat value="{{params['fat']}}">
-        </label>
-        <label>
-            <span>Carbs :</span>
-            <input type="text" name= carb value="{{params['carb']}}">
-        </label>
-        <label>
-            <span>Fiber :</span>
-            <input type="text" name= fiber value="{{params['fiber']}}">
-        </label>
-        <label>
-            <span>Protein :</span>
-            <input type="text" name= protein value="{{params['protein']}}">
-        </label> -->
         <label>
             <span>Food Type :</span>
-            <input type="text" name= nutr_type value="{{params['nutr_type']}}">
+            <input type="text" name= nutr_type value="{{params['nutr_type']}}"/>
         </label>
         <button type="submit">Search</button> 
 
-        <table id="table"></table>
+        <table id="table"   ></table>
     </form>
-
-    <!-- <div style="text-align: center;">
-    <form action="home" meathod="get">
-        <span>nutr_id:</span>
-            <input type="text" name=nutr_id value="{{params['nutr_id']}}">
-        <span>item:</span>
-            <input type="text" name=item value="{{params['item']}}">
-         <span>calories:</span>
-            <input type="text" name=calories value="{{params['calories']}}">
-        <span>fat:</span>
-            <input type="text" name=fat value="{{params['fat']}}">
-        <span>carb:</span>
-            <input type="text" name=carb value="{{params['carb']}}">
-        <span>fiber:</span>
-            <input type="text" name=fiber value="{{params['fiber']}}">
-         <span>protein:</span>
-            <input type="text" name=protein value="{{params['protein']}}">
-        <span>nutr_type:</span>
-            <input type="text" name=nutr_type value="{{params['nutr_type']}}">
-    </form>
-    </div> -->
+    
+    <style>
+    label {
+    color: white;
+}
+    </style>
 
     {% if result_count > 0 %}
     <div style="text-align: center;"><h1>{{result_count}} results</h1></div>
@@ -110,88 +101,19 @@ form>label>span {
     <form>
         {% if not summary%}
         <table>
+            <thead>
             <tr>
                 <div class="th">
-                <th>
-                    <a href="/home?nutr_id={{params['nutr_id']}}&item={{params['item']}}&calories={{params['calories']}}&fat={{params['fat']}}&carb={{params['carb']}}&fiber={{params['fiber']}}&protein={{params['protein']}}&nutr_type={{params['nutr_type']}}&sort_by=nutr_id&sort_dir={{get_sort_dir('nutr_id')}}">nutr_id</a>
-                    {% if params['sort_by'] == 'nutr_id' %}
-                    {% if params['sort_dir'] == 'asc' %}
-                    <span>&#8593;</span>
-                    {% else %}
-                    <span>&#8595;</span>
-                    {% endif %}
-                    {% endif %}
-                </th>
-                <th>
-                    <a href="/home?nutr_id={{params['nutr_id']}}&item={{params['item']}}&calories={{params['calories']}}&fat={{params['fat']}}&carb={{params['carb']}}&fiber={{params['fiber']}}&protein={{params['protein']}}&nutr_type={{params['nutr_type']}}&sort_by=iteme&sort_dir={{get_sort_dir('item')}}">item</a>
-                    {% if params['sort_by'] == 'item' %}
-                    {% if params['sort_dir'] == 'asc' %}
-                    <span>&#8593;</span>
-                    {% else %}
-                    <span>&#8595;</span>
-                    {% endif %}
-                    {% endif %}
-                </th>
-                <th>
-                    <a href="/home?nutr_id={{params['nutr_id']}}&item={{params['item']}}&calories={{params['calories']}}&fat={{params['fat']}}&carb={{params['carb']}}&fiber={{params['fiber']}}&protein={{params['protein']}}&nutr_type={{params['nutr_type']}}&sort_by=calories&sort_dir={{get_sort_dir('calories')}}">calories</a>
-                    {% if params['sort_by'] == 'calories' %}
-                    {% if params['sort_dir'] == 'asc' %}
-                    <span>&#8593;</span>
-                    {% else %}
-                    <span>&#8595;</span>
-                    {% endif %}
-                    {% endif %}
-                </th>
-                <th>
-                    <a href="/home?nutr_id={{params['nutr_id']}}&item={{params['item']}}&calories={{params['calories']}}&fat={{params['fat']}}&carb={{params['carb']}}&fiber={{params['fiber']}}&protein={{params['protein']}}&nutr_type={{params['nutr_type']}}&sort_by=fat&sort_dir={{get_sort_dir('fat')}}">fat</a>
-                    {% if params['sort_by'] == 'fat' %}
-                    {% if params['sort_dir'] == 'asc' %}
-                    <span>&#8593;</span>
-                    {% else %}
-                    <span>&#8595;</span>
-                    {% endif %}
-                    {% endif %}
-                </th>
-                <th>
-                    <a href="/home?nutr_id={{params['nutr_id']}}&item={{params['item']}}&calories={{params['calories']}}&fat={{params['fat']}}&carb={{params['carb']}}&fiber={{params['fiber']}}&protein={{params['protein']}}&nutr_type={{params['nutr_type']}}&sort_by=carbe&sort_dir={{get_sort_dir('carb')}}">carb</a>
-                    {% if params['sort_by'] == 'carb' %}
-                    {% if params['sort_dir'] == 'asc' %}
-                    <span>&#8593;</span>
-                    {% else %}
-                    <span>&#8595;</span>
-                    {% endif %}
-                    {% endif %}
-                </th>
-                <th>
-                    <a href="/home?nutr_id={{params['nutr_id']}}&item={{params['item']}}&calories={{params['calories']}}&fat={{params['fat']}}&carb={{params['carb']}}&fiber={{params['fiber']}}&protein={{params['protein']}}&nutr_type={{params['nutr_type']}}&sort_by=fiber&sort_dir={{get_sort_dir('fiber')}}">fiber</a>
-                    {% if params['sort_by'] == 'fiber' %}
-                    {% if params['sort_dir'] == 'asc' %}
-                    <span>&#8593;</span>
-                    {% else %}
-                    <span>&#8595;</span>
-                    {% endif %}
-                    {% endif %}
-                </th>
-                <th>
-                    <a href="/home?nutr_id={{params['nutr_id']}}&item={{params['item']}}&calories={{params['calories']}}&fat={{params['fat']}}&carb={{params['carb']}}&fiber={{params['fiber']}}&protein={{params['protein']}}&nutr_type={{params['nutr_type']}}&sort_by=proteine&sort_dir={{get_sort_dir('protein')}}">protein</a>
-                    {% if params['sort_by'] == 'protein' %}
-                    {% if params['sort_dir'] == 'asc' %}
-                    <span>&#8593;</span>
-                    {% else %}
-                    <span>&#8595;</span>
-                    {% endif %}
-                    {% endif %}
-                </th><th>
-                    <a href="/home?nutr_id={{params['nutr_id']}}&item={{params['item']}}&calories={{params['calories']}}&fat={{params['fat']}}&carb={{params['carb']}}&fiber={{params['fiber']}}&protein={{params['protein']}}&nutr_type={{params['nutr_type']}}&sort_by=nutr_type&sort_dir={{get_sort_dir('nutr_tpye')}}">nutr_type</a>
-                    {% if params['sort_by'] == 'nutr_type' %}
-                    {% if params['sort_dir'] == 'asc' %}
-                    <span>&#8593;</span>
-                    {% else %}
-                    <span>&#8595;</span>
-                    {% endif %}
-                    {% endif %}
-                </th>
-            </tr>
+                    <th><a href="?sort_by=nutr_id&amp;sort_dir={{ sort_dir }}&item={{params.item}}&nutr_id={{params.nutr_id}}&nutr_type={{params.nutr_type}}">Nutrition ID</a></th>
+                    <th><a href="?sort_by=item&amp;sort_dir={{ sort_dir }}&item={{params.item}}&nutr_id={{params.nutr_id}}&nutr_type={{params.nutr_type}}">Item</a></th>
+                    <th><a href="?sort_by=calories&amp;sort_dir={{ sort_dir }}&item={{params.item}}&nutr_id={{params.nutr_id}}&nutr_type={{params.nutr_type}}">Calories</a></th>
+                    <th><a href="?sort_by=fat&amp;sort_dir={{ sort_dir }}&item={{params.item}}&nutr_id={{params.nutr_id}}&nutr_type={{params.nutr_type}}">Fat</a></th>
+                    <th><a href="?sort_by=carb&amp;sort_dir={{ sort_dir }}&item={{params.item}}&nutr_id={{params.nutr_id}}&nutr_type={{params.nutr_type}}">Carbs</a></th>
+                    <th><a href="?sort_by=fiber&amp;sort_dir={{ sort_dir }}&item={{params.item}}&nutr_id={{params.nutr_id}}&nutr_type={{params.nutr_type}}">Fiber</a></th>
+                    <th><a href="?sort_by=protein&amp;sort_dir={{ sort_dir }}&item={{params.item}}&nutr_id={{params.nutr_id}}&nutr_type={{params.nutr_type}}">Protein</a></th>
+                    <th><a href="?sort_by=nutr_type&amp;sort_dir={{ sort_dir }}&item={{params.item}}&nutr_id={{params.nutr_id}}&nutr_type={{params.nutr_type}}">Food Type</a></th>
+              
+             </tr>        
                 {% for nut in nutrition%}
                 <tr>
                     <td>{{nut.nutr_id}}</td>
@@ -204,6 +126,7 @@ form>label>span {
                     <td>{{nut.nutr_type}}</td>
                 </tr>
             {% endfor %}
+            </thead>
         </table>
         {% endif %}
     </div>

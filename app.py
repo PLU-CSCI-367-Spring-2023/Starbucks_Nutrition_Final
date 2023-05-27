@@ -78,5 +78,5 @@ def render_nutrition():
                                nutrition=results,
                                params=request.args,
                                result_count = count,
-                               get_sort_dir = get_sort_dir
+                               get_sort_dir = get_sort_dir,
                                 )
